@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="header.jsp"%>
+pageEncoding="UTF-8"%> <%@ taglib prefix="form"
+uri="http://www.springframework.org/tags/form"%> <%@ taglib prefix="fmt"
+uri="http://java.sun.com/jsp/jstl/fmt"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%> <%@ include
+file="header.jsp"%>
 
 
 <div class="container">
@@ -16,13 +16,12 @@
 				<a href="javascript:openUserAddModal();"
 					class="btn btn-primary mdi-social-person-add" title="Add"></a>
 			</div>
-			<form:form commandName="usercondition" method="post">
+			<form id="usercondition" method="post">
 				<div class="col-md-12">
 					<div class="col-md-3">
 						<div class="checkbox checkbox-primary">
-							<label> <input type="checkbox" name="optionsRadios"
-								id="rdFilter" onchange="javascript:filterControl();"
-								value="option1">Filter
+							<label> <input type="checkbox" name="optionsRadios" id="rdFilter"
+								onchange="javascript:filterControl();" value="option1">Filter
 							</label>
 						</div>
 					</div>
@@ -32,12 +31,12 @@
 						<label class="margin-top-7px col-xs-2 control-label"
 							for="numberOfDisplayRecords">View</label>
 						<div class="col-xs-6 padding-none float-right">
-							<form:select path="numberOfDisplayRecords" class="form-control">
+							<!-- <form:select path="numberOfDisplayRecords" class="form-control">
 								<c:forTokens items="${usercondition.listNumberOfDisplayPages}"
 									delims="," var="page">
 									<option value="${page}">${page}</option>
 								</c:forTokens>
-							</form:select>
+							</form:select> -->
 						</div>
 					</div>
 				</div>
@@ -63,18 +62,18 @@
 				<ul class="pagination">
 				</ul>
 
-				<form:input type="hidden" path="numberOfDisplayPages" />
-				<form:input type="hidden" path="currentDisplayPage" />
-				<form:input type="hidden" path="numberOfDisplayRecords" />
-				<form:input type="hidden" path="startIndxPage" />
-				<form:input type="hidden" path="totalPages" />
-			</form:form>
+				<input type="hidden" id="numberOfDisplayPages" /> <input
+					type="hidden" id="currentDisplayPage" /> <input type="hidden"
+					id="numberOfDisplayRecords" /> <input type="hidden"
+					id="startIndxPage" /> <input type="hidden" id="totalPages" />
+			</form>
+
 		</div>
 	</div>
 </div>
 
 <!-- Modal zone -->
-<%@ include file="user_edit.jsp"%>
+<!-- <%@ include file="user_edit.jsp"%> -->
 <script type="text/javascript">
 	var dataProps = {
 		1 : "userId",

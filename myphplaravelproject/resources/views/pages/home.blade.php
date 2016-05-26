@@ -1,5 +1,4 @@
-@extends('templates.master')
-@section('content')
+@extends('templates.master') @section('content')
 <div class="container">
 	<div class="panel panel-color-complement-4">
 		<div class="panel-heading">
@@ -21,12 +20,13 @@
 						<th>Last Visited</th>
 						<th>Action</th>
 					</tr>
+					@foreach ($mstusers as $user)
 					<tr>
 						<td>1</td>
 						<td>A3238Xkh <span class="label label-warning">Admin</span></td>
 						<td class="text-center"><img src="images/share/noname.jpg"
 							class="img-circle" width="40" id="prev_img"></td>
-						<td>{{$name}}</td>
+						<td>{{$user->user_id}}</td>
 						<td></td>
 						<td>xxxx@gmail.com</td>
 						<td>2015/04/21 11:25:42</td>
@@ -34,13 +34,10 @@
 							class="btn btn-material-cyan-600 btn-fab btn-fab-mini mdi-editor-border-color"
 							title="Edit"></a></td>
 					</tr>
+					@endforeach
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
 @stop
-<script type="text/javascript">
-	$(document, window, undefined).ready(function() {
-	});
-</script>

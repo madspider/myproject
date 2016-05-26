@@ -255,9 +255,13 @@ body {
 .dropdown-menu li:hover .sub-menu {
 	visibility: visible;
 }
-
+/*
 .dropdown:hover .dropdown-menu {
 	display: block;
+}
+ */
+ul.dropdown-menu>li:not(.dropdown-header):not(.divider):hover {
+	background-color: #e7e7e7;
 }
 
 .nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu
@@ -289,10 +293,10 @@ div.thumbnail>img {
 	width: 100%;
 	display: block;
 }
+
 div.thumbnail.mainimage>img {
 	height: 300px;
 }
-
 
 div.thumbnail>div>h3.productDetail {
 	color: #A56E15;
@@ -312,17 +316,42 @@ div.thumbnail>div>p.productCurrentPrice {
 	font-style: normal;
 	font-weight: bold;
 }
+
 div.thumbnail>div>p.productCheckOut {
 	text-align: center;
 }
 
 .my-title {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 16px;
-    color: inherit;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 16px;
+	color: inherit;
 }
 
 .my-heading {
-    background-color: #2d8d77;
+	background-color: #2d8d77;
+}
+
+.main-nav {
+	position: fixed;
+	z-index: 8888;
+	width: 100%;
+	box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+a.banner_header {
+	height: 70px;
+	width: 100%;
+	overflow: hidden;
+	background-size: 100% auto;
+	cursor: pointer;
+	display: block;
+}
+
+div.index_footer_info {
+    clear: both;
+    background: #e3e3e3;
+    padding: 15px 0;
+    overflow: hidden;
+    padding: 20px 0 10px 0;
 }

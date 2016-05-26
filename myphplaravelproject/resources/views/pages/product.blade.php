@@ -90,7 +90,6 @@
 							</div>
 							<!-- image -->
 							<fieldset>
-
 								<c:forEach items="${product.images}" var="image">
 									<div class="col-xs-6 col-md-3">
 										<div class="thumbnail">

@@ -1,18 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="header.jsp"%>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"
+	type="text/
+	javascript"></script>
+<script src="dist/js/jquery-1.11.2.min.js"></script>
+<script src="dist/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="dist/js/datepicker-ja.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/ripples.min.js"></script>
+<script src="dist/js/material.min.js"></script>
+<script src="dist/js/snackbar.min.js"></script>
+<script src="dist/js/jquery.nouislider.min.js"></script>
+<script src="dist/js/slidebars/slidebars.min.js"></script>
+<script src="dist/js/jssor.slider.min.js" type="text/javascript"></script>
+<script src="dist/js/dropzone.js"></script>
+<script src="dist/js/common.js"></script>
+<script src="dist/js/directory.js"></script>
+<script src="dist/js/jquery-confirm.js"></script>
+<script src="dist/js/jquery.validationEngine-en.js"
+	type="text/javascript" charset="utf-8"></script>
+<script src="dist/js/jquery.validationEngine.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="dist/js/jquery.tablesorter.js" type="text/javascript"></script>
+<script src="dist/js/jquery.tablesorter.min.js" type="text/javascript"></script>
+
+@extends('templates.master') @section('content')
 <div class="container">
 	<div class="panel panel-color-secondary-1-4">
 		<div class="panel-body">
-			<form:form method="post" enctype="multipart/form-data"
-				class="dropzone" commandName="dropzoneForm">
+			<form method="post" enctype="multipart/form-data" action="temporaryupload" class="dropzone"
+				name="dropzoneForm">
 				<div class="fallback">
 					<input name="file" type="file" multiple />
 				</div>
-			</form:form>
+			</form>
 			<div class="form-horizontal">
 				<div class="form-group">
 					<div class="col-md-2 ">
@@ -23,16 +44,15 @@
 					<label for="categoryId" class="col-md-2 control-label">Loại</label>
 					<div class="col-md-2">
 						<select class="form-control validate[required]" id="categoryId">
-							<c:forEach items="${categories}" var="category">
+							<!-- <c:forEach items="${categories}" var="category">
 								<option value="${category.categoryId }"
 									${categoryId != null and categoryId == category.categoryId ? 'selected="selected"' : '' }>${category.categoryName }
 								<option>
-							</c:forEach>
+							</c:forEach> -->
 						</select>
 					</div>
 
-					<label for="productName" class="col-md-2 control-label">Sản
-						phẩm</label>
+					<label for="productName" class="col-md-2 control-label">Sản phẩm</label>
 					<!-- <div class="col-md-2">
 						<input type="text"
 							class="form-control validate[required,maxSize[32]]"
@@ -40,11 +60,11 @@
 					</div> -->
 					<div class="col-md-2">
 						<select class="form-control validate[required]" id="productId">
-							<c:forEach items="${products}" var="product">
+							<!-- <c:forEach items="${products}" var="product">
 								<option value="${product.productId }"
 									${productId != null and productId == product.productId  ? 'selected="selected"' : '' }>${product.productName }
 								<option>
-							</c:forEach>
+							</c:forEach> -->
 						</select>
 					</div>
 				</div>
@@ -54,11 +74,9 @@
 		</div>
 	</div>
 </div>
+@stop
 
-<%@ include file="footer.jsp"%>
-<%@ include file="rightpane.jsp"%>
-<%@ include file="javascript.jsp"%>
-
+</script>
 <script type="text/javascript">
 	var filenames = [];
 	var $dropzone;

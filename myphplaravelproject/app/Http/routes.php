@@ -15,6 +15,7 @@
 Route::get('/',  'WelcomeController@index');
 
 
-Route::get('/home', 'WelcomeController@index');
+Route::get('/upload', 'UploadController@index');
+Route::post('/temporaryupload', 'UploadController@temporaryupload');
 
 Route::get('/home', 'WelcomeController@index');
