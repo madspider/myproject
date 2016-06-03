@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <html class=''>
 <head>
 <meta charset='UTF-8'>
@@ -50,47 +51,38 @@
 						title="Our Collection of Templates &amp; Themes">Themes <b
 							class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="/template-categories/all"><i
-									class="fa fa-globe fa-fw"></i> All Templates &amp; Themes</a></li>
-							<li><a href="/template-categories/popular"><i
-									class="fa fa-star fa-fw"></i> Most Popular</a></li>
-							<li><a href="/buy-bootstrap-templates"><i
-									class="fa fa-shopping-cart fa-fw"></i> Buy Bootstrap Templates</a>
-							</li>
+							<li><a href="#"><i class="fa fa-globe fa-fw"></i> All Templates
+									&amp; Themes</a></li>
+							<li><a href="#"><i class="fa fa-star fa-fw"></i> Most Popular</a></li>
+							<li><a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Buy
+									Bootstrap Templates</a></li>
 							<li class="divider"></li>
 							<li class="dropdown-header">Template &amp; Theme Categories:</li>
-							<li><a href="/template-categories/admin-dashboard">Admin and
-									Dashboard</a></li>
-							<li><a href="/template-categories/full-websites">Full Websites</a>
-							</li>
-							<li><a href="/template-categories/landing-pages">Landing Pages</a>
-							</li>
-							<li><a href="/template-categories/one-page">One Page Websites</a>
-							</li>
-							<li><a href="/template-categories/portfolios">Portfolios</a></li>
-							<li><a href="/template-categories/blogs">Blogs</a></li>
-							<li><a href="/template-categories/ecommerce">Ecommerce</a></li>
-							<li><a href="/template-categories/unstyled">Unstyled Starter
-									Templates</a></li>
-							<li><a href="/template-categories/navigation-menus">Navigation
-									and Navbars</a></li>
+							<li><a href="#">Admin and Dashboard</a></li>
+							<li><a href="#">Full Websites</a></li>
+							<li><a href="#">Landing Pages</a></li>
+							<li><a href="#">One Page Websites</a></li>
+							<li><a href="#">Portfolios</a></li>
+							<li><a href="#">Blogs</a></li>
+							<li><a href="#">Ecommerce</a></li>
+							<li><a href="#">Unstyled Starter Templates</a></li>
+							<li><a href="#">Navigation and Navbars</a></li>
 						</ul></li>
-					<li><a href="http://startbootstrap.tumblr.com/"
-						title="The Official Start Bootstrap Blog">Blog</a></li>
+					<li><a href="#" title="The Official Start Bootstrap Blog">Blog</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" title="Bootstrap Related Resources">Resources
 							<b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="/bootstrap-resources"><i class="fa fa-list fa-fw"></i>
-									Bootstrap Resources List</a></li>
-							<li><a href="/showcase"><i class="fa fa-desktop fa-fw"></i> Start
+							<li><a href="#"><i class="fa fa-list fa-fw"></i> Bootstrap
+									Resources List</a></li>
+							<li><a href="#"><i class="fa fa-desktop fa-fw"></i> Start
 									Bootstrap Showcase</a></li>
 						</ul></li>
-					<li><a href="/help"
+					<li><a href="#"
 						title="Help with Start Bootstrap Templates &amp; Themes">Help</a>
 					</li>
-					<li><a href="/contact" title="Contact the Start Bootstrap Team">Contact</a>
+					<li><a href="#" title="Contact the Start Bootstrap Team">Contact</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -98,11 +90,10 @@
 						data-toggle="dropdown"
 						title="Premium Bootstrap Themes &amp; Templates"
 						aria-expanded="false"><i class="fa fa-star text-yellow"></i>
-							Premium <i class="mdi-social-person"></i> <b class="caret"></b></a>
+							Settings <i class="mdi-social-person"></i> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="pages/upload"><i class="fa fa-fw fa-paint-brush"></i>Upload</a></li>
-							<li><a href="${pageContext.request.contextPath}/adminuser">User<i
-									class="fa fa-fw fa-shopping-cart"></i>User
+							<li><a href="upload"><i class="fa fa-fw fa-paint-brush"></i>Upload</a></li>
+							<li><a href="admin">admin<i class="fa fa-fw fa-shopping-cart"></i>User
 							</a></li>
 						</ul></li>
 
@@ -117,15 +108,7 @@
 	</nav>
 
 	<div id="sb-site" class="margin-top-80-px">
-		<!-- breadcrumb Start -->
-		<div class="container">
-			<ol class="breadcrumb">
-				<li><a href="/index.html">Start Bootstrap</a></li>
-				<li><a href="/template-categories/all">Templates</a></li>
-				<li class="active">SB Admin</li>
-			</ol>
-		</div>
-		@yield('content') @yield('content2')
+		@yield('breadcrumb') @yield('content') @yield('content2')
 		<!-- breadcrumb End -->
 		<!-- Footer Start -->
 		<footer>
@@ -134,13 +117,13 @@
 					<div class="col-md-6 footer-left">
 						<ul class="list-inline">
 							<li><a href="/">Home</a></li>
-							<li><a href="/all-templates">Themes</a></li>
-							<li><a href="http://startbootstrap.tumblr.com/">Blog</a></li>
-							<li><a href="/bootstrap-resources">Resources</a></li>
-							<li><a href="/help">Help</a></li>
-							<li><a href="/contact">Contact</a></li>
+							<li><a href="#">Themes</a></li>
+							<li><a href="#">Blog</a></li>
+							<li><a href="#">Resources</a></li>
+							<li><a href="#">Help</a></li>
+							<li><a href="#">Contact</a></li>
 						</ul>
-						<p>
+						<!--<p>
 							<iframe id="gh-fork"
 								src="http://ghbtns.com/github-btn.html?user=blackrockdigital&amp;repo=startbootstrap&amp;type=fork"
 								allowtransparency="true" frameborder="0" scrolling="0"
@@ -192,23 +175,20 @@
 							scrolling="no" frameborder="0"
 							style="border: none; overflow: hidden; width: 150px; height: 21px;"
 							allowtransparency="true"></iframe>
-						</p>
+						</p>  -->
 					</div>
 					<div class="col-md-6 footer-right">
 						<p>
-							<a href="http://www.startbootstrap.com">Start Bootstrap</a> is a
-							project maintained by <a href="http://davidmiller.io">David
-								Miller</a> at <a href="http://blackrockdigital.io">Blackrock
-								Digital</a>.
+							<a href="#">Start Bootstrap</a> is a project maintained by <a
+								href="http://davidmiller.io">David Miller</a> at <a
+								href="http://blackrockdigital.io">Blackrock Digital</a>.
 						</p>
 						<p>
-							Bootstrap CDN by <a
-								href="http://tracking.maxcdn.com/c/99191/3982/378"><img
-								src="http://sbootstrap.startbootstrapc.netdna-cdn.com/assets/img/maxcdn-logo.svg"
-								style="height: 16px;" alt="MaxCDN Logo"></a>
+							Bootstrap CDN by <a href="#"><img src="" style="height: 16px;"
+								alt="MaxCDN Logo"></a>
 						</p>
 						<p>
-							Hosted on <a href="https://pages.github.com/"><img
+							Hosted on <a href="#"><img
 								src="http://sbootstrap.startbootstrapc.netdna-cdn.com/assets/img/gh-pages-logo.svg"
 								style="height: 16px;" alt="GitHub Pages Logo"></a>
 						</p>
@@ -220,7 +200,7 @@
 						<p>
 							Themes and templates licensed under the <a
 								href="https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE">MIT
-								License</a>. <br>Based on <a href="http://getbootstrap.com/">Bootstrap</a>.
+								License</a>. <br>Based on <a href="#">Bootstrap</a>.
 						</p>
 					</div>
 				</div>
@@ -244,7 +224,7 @@
 		</ul>
 	</div>
 	<!-- Left Panel End -->
-
+	@yield('footer')
 	<!-- Right Panel Start -->
 	<!--<div class="sb-slidebar sb-right sb-style-overlay bgcolor-complement-2">
 		<ul class="nav nav-tabs nav-stacked  bgcolor-complement-0"

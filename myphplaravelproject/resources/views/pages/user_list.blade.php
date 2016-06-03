@@ -1,10 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="form"
-uri="http://www.springframework.org/tags/form"%> <%@ taglib prefix="fmt"
-uri="http://java.sun.com/jsp/jstl/fmt"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%> <%@ include
-file="header.jsp"%>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"
+	type="text/
+	javascript"></script>
+<script src="dist/js/jquery-1.11.2.min.js"></script>
+<script src="dist/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="dist/js/datepicker-ja.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/ripples.min.js"></script>
+<script src="dist/js/material.min.js"></script>
+<script src="dist/js/snackbar.min.js"></script>
+<script src="dist/js/jquery.nouislider.min.js"></script>
+<script src="dist/js/slidebars/slidebars.min.js"></script>
+<script src="dist/js/jssor.slider.min.js" type="text/javascript"></script>
+<script src="dist/js/common.js"></script>
+<script src="dist/js/directory.js"></script>
+<script src="dist/js/jquery-confirm.js"></script>
+<script src="dist/js/jquery.validationEngine-en.js"
+	type="text/javascript" charset="utf-8"></script>
+<script src="dist/js/jquery.validationEngine.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="dist/js/jquery.tablesorter.js" type="text/javascript"></script>
+<script src="dist/js/jquery.tablesorter.min.js" type="text/javascript"></script>
 
+@extends('templates.master') @section('breadcrumb')
+<!-- breadcrumb Start -->
+<div class="container">
+	<ol class="breadcrumb">
+		<li><a href="/home">Home</a></li>
+		<li class="active">admin</li>
+	</ol>
+</div>
+@stop @section('content')
 
 <div class="container">
 	<div class="panel panel-color-complement-4">
@@ -71,7 +98,7 @@ file="header.jsp"%>
 		</div>
 	</div>
 </div>
-
+@stop
 <!-- Modal zone -->
 <!-- <%@ include file="user_edit.jsp"%> -->
 <script type="text/javascript">
