@@ -80,10 +80,10 @@
 							<li><a href="#"><i class="fa fa-desktop fa-fw"></i> Start
 									Bootstrap Showcase</a></li>
 						</ul></li>
-					<li><a href="#"
-						title="Help with Start Bootstrap Templates &amp; Themes">Help</a>
+					<li><a href="direction"
+						title="Help with Start Bootstrap Templates &amp; Themes">Bản Đồ</a>
 					</li>
-					<li><a href="#" title="Contact the Start Bootstrap Team">Contact</a>
+					<li><a href="#" title="Contact the Start Bootstrap Team">Liên Hệ</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -179,6 +179,7 @@
 							allowtransparency="true"></iframe>
 						</p>  -->
 					</div>
+					
 					<div class="col-md-6 footer-right">
 						<p>
 							<a href="#">Start Bootstrap</a> is a project maintained by <a

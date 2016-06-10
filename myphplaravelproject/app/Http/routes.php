@@ -31,3 +31,6 @@ Route::post ( '/save', 'ProductController@save' );
 Route::get ( '/delete', 'ProductController@delete' );
 Route::get ( '/product', 'ProductController@display' );
 Route::get ( '/getimageproduct', 'ProductController@getimageproduct' );
+
+/* Genneral */
+Route::get ( '/direction', 'InfomationController@getdirection' );

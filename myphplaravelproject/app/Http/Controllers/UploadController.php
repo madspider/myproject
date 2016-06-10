@@ -16,10 +16,21 @@ class UploadController extends Controller {
 	}
 	public function index() {
 		$mstProduct = null;
-		$mstCategory = MstCategory::all ();
-		if (! empty ( $mstCategory )) {
-			$mstProduct = MstProduct::where ( 'category_id', $mstCategory [0]->category_id )->get ();
+		$mstCategory = null;
+		if (isset ( $_GET ['cid'] ) && $_GET ['cid'] > 0) {
+			$mstCategory = MstCategory::where ( 'category_id', $_GET ['cid'] )->get ();
+		} else {
+			$mstCategory = MstCategory::all ();
 		}
+		
+		if (! empty ( $mstCategory )) {
+			if (isset ( $_GET ['pid'] ) && $_GET ['pid'] > 0) {
+				$mstProduct = MstProduct::where ( 'category_id', $mstCategory [0]->category_id )->where ( 'product_id', $_GET ['pid'] )->get ();
+			} else {
+				$mstProduct = MstProduct::where ( 'category_id', $mstCategory [0]->category_id )->get ();
+			}
+		}
+		
 		return view ( 'pages\upload' )->with ( [ 
 				'categories' => $mstCategory,
 				'products' => $mstProduct 

@@ -39,10 +39,12 @@ Html::script('assets/js/dropzone-config.js'); !!}@stop
 					<label for="categoryId" class="col-md-2 control-label">Loại</label>
 					<div class="col-md-2">
 						<select class="form-control validate[required]" id="category_id"
-							name="category_id" onchange="javascript:getproducts();"> @foreach ($categories as $category)
+							name="category_id" onchange="javascript:getproducts();"> 
+							@foreach ($categories as $category)
 							<option value="{{$category->category_id}}">{{$category->category_name}}</option>
 							@endforeach
 						</select>
+
 					</div>
 
 					<label for="productName" class="col-md-2 control-label">Sản phẩm</label>

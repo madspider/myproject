@@ -10,7 +10,7 @@ $(document, window, undefined).ready(
 
 			// initialize
 			var $page = window.location.hash.substring(1);
-			selectDataForPage($page, $("#numberOfDisplayRecords").val());
+			selectDataForPage($page);
 			// Select the first page if number of display records was changed
 			/*
 			 * $("#numberOfDisplayRecords").change(function() { paginateAjax(1);
@@ -38,18 +38,13 @@ $(document, window, undefined).ready(
 			 * container : "body", placement : "right" });
 			 */
 
-			$(document).on(
-					'click',
-					'.pagination a',
-					function(e) {
-						selectDataForPage(
-								$(this).attr('href').split('page=')[1], $(
-										"#numberOfDisplayRecords").val());
-						e.preventDefault();
-					});
+			$(document).on('click', '.pagination a', function(e) {
+				selectDataForPage($(this).attr('href').split('page=')[1]);
+				e.preventDefault();
+			});
 
 			$("#numberOfDisplayRecords").change(function() {
-				selectDataForPage(1, $(this).val());
+				selectDataForPage(1);
 			});
 
 			$("div").on(
@@ -91,13 +86,16 @@ $(document, window, undefined).ready(
 		});
 
 // select data from server side by ajax
-function selectDataForPage(page, num) {
-	$.ajax({
-		url : "selectdataforpage?page=" + page + "&num=" + num,
-		dataType : "json",
-	}).done(function(data) {
+function selectDataForPage($page) {
+	$.ajax(
+			{
+				url : "selectdataforpage?page=" + $page + "&num="
+						+ $("#numberOfDisplayRecords").val() + "&caid="
+						+ $("select#categoryId option:selected").val(),
+				dataType : "json",
+			}).done(function(data) {
 		$('#frmProduct div.product').html(data);
-		location.hash = page;
+		location.hash = $page;
 	}).fail(function() {
 		$.ajax('Posts could not be loaded.');
 
@@ -114,7 +112,7 @@ function openProductAddModal() {
 
 // Open mode edit user properties
 function openProductEditModal($tr) {
-	
+
 	var $productId = $tr.find(".product_id").text();
 	clearModalContent($('#productEditModal'));
 	// setDataForModal($('#productEditModal'), $tr);
@@ -229,7 +227,13 @@ function drawimageproduct($product) {
 				$target.append($imagediv);
 			}
 		} else {
-			$target.append("<h3>Sản Phẩm Này Chưa Có Hình Nào</h3>");
+			var $href = "upload?cid=" + $product[0].category_id + "&pid="
+					+ $product[0].product_id;
+			var $a = $('<a></a>')
+					.attr('href', $href)
+					.text(
+							"<a>Sản Phẩm Này Chưa Có Hình Nào. Nhấn vào đây để thêm hình ảnh</a>");
+			$target.append($a);
 		}
 
 	}
@@ -306,7 +310,7 @@ function successDeleteFunction(result) {
 		autoClose : 'cancel|6000',
 	});
 	var $page = window.location.hash.substring(1);
-	selectDataForPage($page, $("#numberOfDisplayRecords").val());
+	selectDataForPage($page);
 	closeModalDialog($("#productEditModal"));
 }
 
@@ -355,14 +359,14 @@ function save() {
 
 function failSaveFunction(result) {
 	var $page = window.location.hash.substring(1);
-	selectDataForPage($page, $("#numberOfDisplayRecords").val());
+	selectDataForPage($page);
 	$.alert(result);
 
 }
 
 function successSaveFunction(result) {
 	var $page = window.location.hash.substring(1);
-	selectDataForPage($page, $("#numberOfDisplayRecords").val());
+	selectDataForPage($page);
 
 	$.confirm({
 		keyboardEnabled : true,

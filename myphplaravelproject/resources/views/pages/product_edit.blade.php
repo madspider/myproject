@@ -56,8 +56,8 @@
 							<label for="description" class="col-lg-4 control-label">Loại SP</label>
 							<div class="col-xs-6 col-md-6  ">
 								<select id="category_id" class="form-control" name="category_id">
-									@foreach ($categories as $category)
-									<option value="{{$category->category_id}}">{{$category->category_name}}</option>
+									@foreach ($categories_con as $category_con_2)
+									<option value="{{$category_con_2->category_id}}">{{$category_con_2->category_name}}</option>
 									@endforeach
 								</select>
 							</div>

@@ -33,7 +33,8 @@ class ProductController extends Controller {
 		return view ( 'pages/product_list' )->with ( [ 
 				'products' => $datas,
 				'views' => $views,
-				'categories' => MstCategory::all () 
+				'categories_con' => MstCategory::all (),
+				'products_con' => MstProduct::all () 
 		] );
 	}
 	
@@ -44,10 +45,19 @@ class ProductController extends Controller {
 	 */
 	public function selectdataforpage() {
 		$num = 1;
+		$categroy_id = null;
 		if (isset ( $_GET ['num'] ) && $_GET ['num'] > 0) {
 			$num = $_GET ['num'];
 		}
-		$datas = Product::paginate ( $num );
+		$datas = null;
+		if (isset ( $_GET ['caid'] ) && $_GET ['caid'] > 0) {
+			$categroy_id = $_GET ['caid'];
+			
+			$datas = Product::where ( 'category_id', $categroy_id )->paginate ( $num );
+		} else {
+			$datas = Product::paginate ( $num );
+		}
+		
 		foreach ( $datas as $product ) {
 			$mstImage = MstImage::where ( 'product_id', $product->product_id )->get ();
 			$product->setImages ( $mstImage );

@@ -15,15 +15,16 @@
 </div>
 @stop @section('content')
 
-
 <div class="container">
-	<div class="panel panel-color-complement-4">
+	<div class="panel panel-info">
 		<div class="panel-heading">
 			<h3 class="panel-title">Sản Phẩm</h3>
 		</div>
 		<div class="panel-body">
+
 			@foreach ($categories as $category)
 			<div class="separate_categories">
+				<span class="glyphicons glyphicons-glass"></span>
 				<h3 class="">{{$category->category_name}}</h3>
 			</div>
 			<div class="row">
@@ -40,6 +41,5 @@
 		</div>
 	</div>
 </div>
-
 @stop @include('templates.javascript') @section('footer') {!!
 Html::script('assets/js/display_product.js'); !!}@stop
