@@ -330,6 +330,8 @@ function formatDate(date) {
 
 function clearModalContent($formId) {
 	$formId.find("input").val("");
+	$formId.find("img").attr("src", "");
+	$formId.find("fieldset.image_product").empty();
 }
 
 function clearModalContentNotDisabled($formId) {

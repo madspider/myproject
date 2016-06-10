@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 class MstUser extends Model
 {
 /**
@@ -11,5 +11,5 @@ class MstUser extends Model
      *
      * @var string
      */
-    protected $table = 'mst_user';
+    protected $table = 'mstuser';
 }

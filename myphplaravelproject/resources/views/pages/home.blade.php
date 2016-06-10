@@ -41,3 +41,4 @@
 	</div>
 </div>
 @stop
+@include('templates.javascript')

@@ -14,8 +14,9 @@
 <link href="dist/css/color-pattern.css" rel="stylesheet">
 <link href="dist/css/dropzone.css" rel="stylesheet">
 <link href="dist/css/basic.css" rel="stylesheet">
+<link href="dist/css/hover_effect.css" rel="stylesheet">
 <link href="dist/css/jquery-confirm.css" rel="stylesheet">
-<link href="dist/css/jquery-confirm.css" rel="stylesheet">
+<link href="dist/css/jquery.bxslider.css" rel="stylesheet">
 <link rel="stylesheet" href="dist/css/validationEngine.jquery.css"
 	type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -92,11 +93,12 @@
 						aria-expanded="false"><i class="fa fa-star text-yellow"></i>
 							Settings <i class="mdi-social-person"></i> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
+							<li><a href="admin">admin<i class="fa fa-fw fa-shopping-cart"></i></a></li>
+							<li><a href="productlist">Quản Lý Sản Phẩm<i
+									class="fa fa-fw fa-shopping-cart"></i></a></li>
 							<li><a href="upload"><i class="fa fa-fw fa-paint-brush"></i>Upload</a></li>
-							<li><a href="admin">admin<i class="fa fa-fw fa-shopping-cart"></i>User
-							</a></li>
-						</ul></li>
-
+						</ul>
+					
 					<li><a href="#" data-toggle="modal" data-target="#searchModal"><i
 							class="fa fa-fw fa-search"></i> <span
 							class="hidden-lg hidden-md hidden-sm">Search Themes</span></a></li>
@@ -248,31 +250,7 @@
 		</ul>
 	</div> -->
 	<!-- Right Panel End -->
-
 	<!-- JS Start -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"
-		type="text/
-	javascript"></script>
-	<script src="dist/js/jquery-1.11.2.min.js"></script>
-	<script src="dist/js/jquery-ui-1.10.4.custom.min.js"></script>
-	<script src="dist/js/datepicker-ja.js"></script>
-	<script src="dist/js/bootstrap.min.js"></script>
-	<script src="dist/js/ripples.min.js"></script>
-	<script src="dist/js/material.min.js"></script>
-	<script src="dist/js/snackbar.min.js"></script>
-	<script src="dist/js/jquery.nouislider.min.js"></script>
-	<script src="dist/js/slidebars/slidebars.min.js"></script>
-	<script src="dist/js/jssor.slider.min.js" type="text/javascript"></script>
-	<script src="dist/js/common.js"></script>
-	<script src="dist/js/directory.js"></script>
-	<script src="dist/js/jquery-confirm.js"></script>
-	<script src="dist/js/jquery.validationEngine-en.js"
-		type="text/javascript" charset="utf-8"></script>
-	<script src="dist/js/jquery.validationEngine.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="dist/js/jquery.tablesorter.js" type="text/javascript"></script>
-	<script src="dist/js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script>
 	$.material.init();
 </script>

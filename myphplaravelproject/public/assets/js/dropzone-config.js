@@ -1,15 +1,71 @@
 var filenames = [];
 var $dropzone;
-$(document, window, undefined).ready(function() {
+$(document).ready(function() {
 	$("#dropzoneForm").submit(uploadFilesSubmit);
 });
 
+function getproducts() {
+	$.ajax({
+		url : "getproducts?id=" + $("#category_id option:selected").val(),
+		type : "get",
+		async : false,
+		dataType : "json"
+	}).success(
+			function(result) {
+				if (result == null) {
+					return;
+				}
+				if (result.sessionTimeout) {
+					return;
+				}
+				if (result.message) {
+					return;
+				}
+				if ((result.data == null && result.length == null)
+						|| (result.data != null && result.data.length == 0)) {
+					return;
+				}
+				if (result == "failed") {
+					$.ajax(result);
+					return;
+				}
+			}).fail(function() {
+	}).complete(
+			function(data) {
+				var $products = JSON.parse(data.responseText);
+				// categories
+				var $option = null;
+				var $targetproducts = $("select[name='product_id']");
+				$targetproducts.empty();
+				if ($products != null && $products.length > 0) {
+					for (var i = 0; i < $products.length; i++) {
+						$option = $("<option></option>").attr("value",
+								$products[i].product_id).text(
+								$products[i].product_name);
+						/*
+						 * if ($product.product_id == $products[i].product_id) {
+						 * $option.attr('selected', 'selected'); }
+						 */
+						$targetproducts.append($option);
+					}
+				} else {
+					$.confirm({
+						title : 'Warning!',
+						keyboardEnabled : true,
+						confirmButton : false,
+						content : "Chưa có sản phẩm nào cho loại này",
+						autoClose : 'cancel|6000',
+					});
+				}
+			});
+}
+
 // Save Upload Informations
 function doUploadFiles() {
-	if (!$("#categoryId").validationEngine('validate')) {
+	if (!$("#category_id").validationEngine('validate')) {
 		return;
 	}
-	if (!$("#productId").validationEngine('validate')) {
+	if (!$("#product_id").validationEngine('validate')) {
 		return;
 	}
 
@@ -28,24 +84,24 @@ function doUploadFiles() {
 function uploadFilesSubmit(event) {
 	event.preventDefault();
 
-	if (!$("#categoryId").validationEngine('validate')) {
+	if (!$("#category_id").validationEngine('validate')) {
 		return;
 	}
-	if (!$("#productId").validationEngine('validate')) {
+	if (!$("#product_id").validationEngine('validate')) {
 		return;
 	}
 
 	var $form = $(this);
 	var dataArray = $form.serializeArray();
-	var categoryId = $("#categoryId option:selected").val();
-	var productId = $("#productId option:selected").val();
+	var categoryId = $("#category_id option:selected").val();
+	var productId = $("#product_id option:selected").val();
 
-	dataArrayPush(dataArray, "categoryId", categoryId);
+	dataArrayPush(dataArray, "category_id", categoryId);
 	dataArrayPush(dataArray, "lstName", $("#lstName").val());
-	dataArrayPush(dataArray, "productId", productId);
+	dataArrayPush(dataArray, "product_id", productId);
 	var dataString = $.param(dataArray);
 	$.ajax({
-		url : makeNewUrl("upload"),
+		url : "upload",
 		type : "post",
 		data : dataString,
 		async : false,
@@ -69,23 +125,11 @@ function uploadFilesSubmit(event) {
 			}
 
 			$dropzone.removeAllFiles();
-
-			$.confirm({
-				title : 'Upload Completed!',
-				content : 'Bạn có muốn chuyển tới trang sản phẩm không?',
-				confirm : function() {
-					var url = makeNewUrl("product") + "?categoryId="
-							+ categoryId + "&productId=" + productId;
-					window.location.href = url;
-				},
-				animation : 'rotate',
-				closeAnimation : 'rotateXR',
-				cancel : function() {
-				}
-			});
+			successedUpload(categoryId, productId);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			failUploadFunction();
+			failUploadFunction(errorThrown);
+			$('body').append(jqXHR.responseText);
 		},
 		done : function(e) {
 			console.log("DONE");
@@ -93,7 +137,25 @@ function uploadFilesSubmit(event) {
 	});
 }
 
-function failUploadFunction() {
+function successedUpload(categoryId, productId) {
+	$("#lstName").val('');
+	filenames = [];
+	$.confirm({
+		title : 'Upload Completed!',
+		content : 'Bạn có muốn chuyển tới trang sản phẩm không?',
+		confirm : function() {
+			var url = makeNewUrl("product") + "?category_id=" + categoryId
+					+ "&product_id=" + productId;
+			window.location.href = url;
+		},
+		animation : 'rotate',
+		closeAnimation : 'rotateXR',
+		cancel : function() {
+		}
+	});
+}
+
+function failUploadFunction(errorThrown) {
 	$.confirm({
 		keyboardEnabled : true,
 		confirmButton : false,
@@ -116,33 +178,28 @@ function deletefileAjax(filename) {
 		async : false,
 	}).done(function(result) {
 	}).fail(function() {
-		$.ajax("failed");
+		$.confirm({
+			title : 'Message!',
+			keyboardEnabled : true,
+			confirmButton : false,
+			content : "Failed",
+			autoClose : 'cancel|6000',
+		});
 	})
 }
-
-
-function uploadAjax() {
-	$.ajax({
-		url : url,
-		type : "post",
-		async : false,
-	}).done(function(result) {
-		alert(result);
-	}).fail(function() {
-		$.ajax("failed");
-	})
-}
-
 
 // File Upload response from the server
 Dropzone.options.dropzoneForm = {
+	headers : {
+		'X-CSRF-Token' : $('meta[name="_token"]').attr('content')
+	},
 	maxFiles : 5,
 	maxFilesize : 8,
-	parallelUploads: 100,
+	parallelUploads : 100,
 	acceptedFiles : "image/*",
-	url : url,
+	url : "temporaryupload",
 	dictDefaultMessage : 'Kéo thả hình vào để upload, hoặc click để lựa chọn file upload...!',
-	dictFileTooBig: 'Image is bigger than 8MB',
+	dictFileTooBig : 'Image is bigger than 8MB',
 	init : function() {
 		// maxfilesexceeded
 		this.on("maxfilesexceeded", function(data) {
@@ -207,8 +264,12 @@ Dropzone.options.dropzoneForm = {
 							// Add the button to the file preview element.
 							file.previewElement.appendChild(removeButton);
 
-							filenames.push(file.name);
-							$("#lstName").val(filenames);
+							var index = filenames.indexOf(file.name);
+							if (index > -1) {
+							} else {
+								filenames.push(file.name);
+								$("#lstName").val(filenames);
+							}
 						});
 
 		this
